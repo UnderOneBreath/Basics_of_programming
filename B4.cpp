@@ -6,26 +6,28 @@ using namespace std;
 
 int my_gcd(int a, int b)
 {
-    while(a!=0 && b!=0){
-        if(a>b)
-            a%=b;
-        else 
-            b%=a;
+    while (a != b)
+    {
+        if (a > b)
+            a -= b;
+        else if (a < b)
+            b -= a;
     }
-    return a+b;
+    return a;
 }
 
 void simplify(int &num, int &denom)
 {
-    int nod=my_gcd(num, denom);
-    num/=nod; denom/=nod;
+    int mygcd = my_gcd(num, denom);
+    num = num / mygcd;
+    denom = denom / mygcd;
 }
 
 // перед unit-тестированием необходимо закомментировать всю функцию main() 
 // и раскомментировать первые две строки программы
 // int main()
 // {
-    
+//     cout << my_gcd(12, 20);
 // }
 
 
@@ -77,7 +79,7 @@ TEST_CASE("Student's tests GCD"){
     simplify(a,b);  
     CHECK(a==4); CHECK(b==15);
 
-    a=1001, b=78; 
+    a=1001, b=78;
     simplify(a,b);  
     CHECK(a==77); CHECK(b==6);
 }

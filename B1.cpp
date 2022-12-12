@@ -4,32 +4,26 @@
 #include <iostream>
 using namespace std;
 
-bool simple(int n){
-    for (int i = 2; i <= floor(sqrt(n)); i++)
-    {
-        if (n % i == 0)
-        {
-            return 0;
-        }
-    }
-    return 1;
-}
-
 bool hamming(int n)
 {
-    if (simple(n) || n == 1)
+    int k = 0;
+    if (n == 1 || n == 0)
+        return false;
+    while (n != 1)
     {
-        return 0;
+        if (n % 2 == 0)
+            n /= 2;
+        if (n % 3 == 0)
+            n /= 3;
+        if (n % 5 == 0)
+            n /= 5;
+        if (n == 1)
+            return true;
+        if (n % 2 != 0 & n % 3 != 0 & n % 5 != 0)
+            k += 1;
+            if ( k > 7 & n == n)
+                return false;
     }
-    for (int i = 2; i <= floor(sqrt(n)); i++)
-    {
-        if(n % i == 0)
-        {
-            if (simple(i) && !(i == 2 || i == 3 || i == 5)) {return 0;}
-            if (simple(n/i) && !((n/i) == 2 || (n/i) == 3 || (n/i) == 5)) {return 0;}
-        }
-    }
-    return 1;
 }
 
 // перед unit-тестированием необходимо закомментировать всю функцию main() 
@@ -37,12 +31,7 @@ bool hamming(int n)
 
 // int main()
 // {
-//     int m, n;
-//     cin >> m >> n;
-//     for (int i = m; i <= n; i++){
-//         if (hamming(i) == true)
-//             cout << i << " ";
-//     }
+//     cout << hamming(44);
 // }
 
 
