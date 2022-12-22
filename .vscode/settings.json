@@ -6,6 +6,7 @@
         "cmath": "cpp",
         "cstdlib": "cpp",
         "ratio": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "xiosbase": "cpp"
     }
 }
