@@ -39,15 +39,6 @@ double solve(vector<double> x, vector<double> y)
     return SmDistance;
 }
 
-// int main()
-// {
-//     vector<double> x, y;
-
-//     x = vector<double>{10, 4, 3, 25, 1};
-//     y = vector<double>{5, 8, 10, 2, 1};
-//     cout << solve(x, y);
-// }
-
 TEST_CASE("Dulustan's tests")
 {
     vector<double> x, y;
@@ -89,3 +80,11 @@ TEST_CASE("Student's tests")
     y = vector<double>{57, 8, 10, 22, 1};
     CHECK(solve(x, y) == doctest::Approx(2.23607));
 }
+// int main()
+// {
+//     vector<double> x, y;
+
+//     x = vector<double>{10, 4, 3, 25, 1};
+//     y = vector<double>{5, 8, 10, 2, 1};
+//     cout << solve(x, y);
+// }

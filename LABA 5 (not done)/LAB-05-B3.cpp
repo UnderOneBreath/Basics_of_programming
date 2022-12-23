@@ -47,6 +47,30 @@ TEST_CASE("Dulustan's tests")
 TEST_CASE("Student's tests")
 {
     vector<int> a, b;
+
+    a = vector<int>{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    b = vector<int>{-1, 23, 34, 43, 54, 890, 90, -23, 0, -3};
+    solve(a, b);
+    CHECK(a == vector<int>({-1, 2, 3, 4, 5, 6, 7, -23, 0, -3}));
+    CHECK(b == vector<int>({1, 23, 34, 43, 54, 890, 90, 8, 9, 10}));
+
+    a = vector<int>{0, 0, 0, 0, 0};
+    b = vector<int>{0, 0, 0, 0, -1};
+    solve(a, b);
+    CHECK(a == vector<int>({0, 0, 0, 0, -1}));
+    CHECK(b == vector<int>({0, 0, 0, 0, 0}));
+
+    a = vector<int>{11, 0, 43, 5, 40, 23, 85, 33, 12, 300};
+    b = vector<int>{34, 23, -2, 3, 5, 0, 12, 85, 90, 12};
+    solve(a, b);
+    CHECK(a == vector<int>({11, 0, -2, 3, 5, 0, 12, 33, 12, 12}));
+    CHECK(b == vector<int>({34, 23, 43, 5, 40, 23, 85, 85, 90, 300}));
+
+    a = vector<int>{13, 89, 23, 95, 934, 23, 229};
+    b = vector<int>{548, -343, -234, 854, 48, 84, 2};
+    solve(a, b);
+    CHECK(a == vector<int>({13, -343, -234, 95, 48, 23, 2}));
+    CHECK(b == vector<int>({548, 89, 23, 854, 934, 84, 229}));
 }
 
 // main отвечает за ввод-вывод

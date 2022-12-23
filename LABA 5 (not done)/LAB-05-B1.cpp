@@ -55,6 +55,29 @@ TEST_CASE("Dulustan's tests")
 TEST_CASE("Student's tests")
 {
     vector<int> v;
+
+    v = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    solve(v);
+    CHECK(v == vector<int>{1, 2, 9, 10});
+
+    v = {1, 1, 1, 1, 1, 1, 1};
+    solve(v);
+    CHECK(v == vector<int>{1, 1, 1, 1, 1, 1, 1});
+
+    v = {1, 0, 1, 2, 1, 7, 1};
+    solve(v);
+    CHECK(v == vector<int>{
+                   1,
+                   0,
+                   1,
+                   1,
+                   7,
+                   1,
+               });
+
+    v = {2002, -1845, 304, 12, 0, 123, 2222, 3033, 3034};
+    solve(v);
+    CHECK(v == vector<int>{-1845, 3033, 3034});
 }
 
 // main отвечает за ввод-вывод

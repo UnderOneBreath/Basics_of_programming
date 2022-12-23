@@ -46,6 +46,26 @@ TEST_CASE("Dulustan's tests")
 // минимум 4 теста
 TEST_CASE("Student's tests")
 {
+    vector<double> x, y;
+    x = vector<double>{2, 1, 9, 4, 80, 0, 9};
+    y = vector<double>{2, 2, 9, 4, 10, 0, 12};
+    CHECK(solve(x, y, 2, 1) == 0);
+
+    x = vector<double>{12, 13, -9, 2};
+    y = vector<double>{10, 12, 9, 4};
+    CHECK(solve(x, y, 10, 1) == 3);
+
+    x = vector<double>{12, 13, -9, 2};
+    y = vector<double>{10, 12, 9, 4};
+    CHECK(solve(x, y, 14, 10) == 0);
+
+    x = vector<double>{122, 153, -90, 4, -5};
+    y = vector<double>{120, 127, 10, 18, 10};
+    CHECK(solve(x, y, 20, -14) == 4);
+
+    x = vector<double>{21, 13, 0, 4, 0, 8, 10};
+    y = vector<double>{10, 17, 2, 1, 14, 100, 14};
+    CHECK(solve(x, y, -10, 54) == 4);
 }
 
 // main отвечает за ввод-вывод

@@ -35,6 +35,10 @@ TEST_CASE("Dulustan's tests")
 // минимум 4 теста
 TEST_CASE("Student's tests")
 {
+    CHECK(solve({3252, 134, 52, 0, 9999}) == vector<int>({3252, 134, 52, 9999, 0}));
+    CHECK(solve({1, 2, 3, 4, 5}) == vector<int>({5, 2, 3, 4, 1}));
+    CHECK(solve({42, -123, 412, 332, 500}) == vector<int>({42, 500, 412, 332, 123}));
+    CHECK(solve({1, -1, 0, 2}) == vector<int>({1, 2, 0, -1}));
 }
 
 // main отвечает за ввод-вывод
