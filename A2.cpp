@@ -42,16 +42,30 @@ int main()
 
         outp = {{'b', 'w', 'b'}, {'w', 'b', 'w'}, {'b', 'w', 'b'}, {'w', 'b', 'w'}, {'b', 'w', 'b'}, {'w', 'b', 'w'}};
         assert(solve(6, 3) == outp);
-    }
 
-    // доделайте эти тесты
-    // Student's tests
-    {
-        outp = {{'b', 'b', 'w'}, {'w', 'b', 'b'}};
+        // доделайте эти тесты
+        // Student's tests
+        outp = {{'b', 'w', 'b'}, {'w', 'b', 'w'}};
         assert(solve(2, 3) == outp);
 
-        outp = ? assert(solve(5, 11) == outp);
+        outp = {{'b', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'b'},
+                {'w', 'b', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'b', 'w'},
+                {'b', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'b'},
+                {'w', 'b', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'b', 'w'},
+                {'b', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'b'}};
+        assert(solve(5, 11) == outp);
 
-        outp = ? assert(solve(10, 4) == outp);
+        outp = {{'b', 'w', 'b', 'w'},
+                {'w', 'b', 'w', 'b'},
+                {'b', 'w', 'b', 'w'},
+                {'w', 'b', 'w', 'b'},
+                {'b', 'w', 'b', 'w'},
+                {'w', 'b', 'w', 'b'},
+                {'b', 'w', 'b', 'w'},
+                {'w', 'b', 'w', 'b'},
+                {'b', 'w', 'b', 'w'},
+                {'w', 'b', 'w', 'b'}};
+        assert(solve(10, 4) == outp);
     }
+    cout << "TEST COMPLITED";
 }
