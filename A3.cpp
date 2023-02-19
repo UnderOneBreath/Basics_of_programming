@@ -24,10 +24,12 @@ int main()
 
     for (int i = 0; i < n; i++)
     {
+        cout << "{";
         for (int j = 0; j < m; j++)
         {
-            cout << Array[i][j] << " ";
+            cout << Array[i][j] << ", ";
         }
+        cout << "},";
         cout << endl;
     }
 
@@ -44,19 +46,18 @@ int main()
 
         outp = {{0, 0, 0, 0, 0, 0}, {0, 1, 1, 1, 1, 0}, {0, 1, 2, 2, 1, 0}, {0, 1, 2, 2, 1, 0}, {0, 1, 1, 1, 1, 0}, {0, 0, 0, 0, 0, 0}};
         assert(solve(6, 6) == outp);
+        // Student's tests
+        //  {
+        //      vector<vector<int>> outp;
+        //      outp = {{0, 0, 0, 0, 0, 0, 0, 0}, {0, 1, 1, 1, 1, 1, 1, 0}, {0, 1, 2, 2, 2, 2, 1, 0},
+        // {0, 1, 2, 3, 3, 2, 1, 0}, {0, 1, 2, 3, 3, 2, 1, 0}, {0, 1, 2, 2, 2, 2, 1, 0},
+        // {0, 1, 1, 1, 1, 1, 1, 0}, {0, 0, 0, 0, 0, 0, 0, 0}}
+        //      assert(solve(8,8) == outp);
+
+        //     outp = ?
+        //     assert(solve(7,11) == outp);
+
+        //     outp = ?
+        //     assert(solve(10,12) == outp);
     }
-
-    // доделайте эти тесты
-    // Student's tests
-    //  {
-    //      vector<vector<int>> outp;
-    //      outp = ?
-    //      assert(solve(8,8) == outp);
-
-    //     outp = ?
-    //     assert(solve(7,11) == outp);
-
-    //     outp = ?
-    //     assert(solve(10,12) == outp);
-    // }
 }
