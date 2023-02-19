@@ -88,5 +88,6 @@ int main()
                 {0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
         assert(solve(10, 12) == outp);
+        // https://disk.yandex.ru/d/zknE1fL2JC-oXw/Labs/Lab01-2d-vectors
     }
 }
