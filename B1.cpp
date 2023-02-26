@@ -3,13 +3,15 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib>
+#include <ctime>
 using namespace std;
 
 void InputEl(vector<vector<int>> V, int n)
 {
+    srand(time(0));
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
-            V[i][j] = ((double)rand() / (RAND_MAX)) + 1;
+            V[i][j] = rand() % 2;
 }
 void OutputArray(vector<vector<int>> V, int n)
 {
