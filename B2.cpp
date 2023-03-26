@@ -1,64 +1,24 @@
-// #define NDEBUG
+#define NDEBUG
 #include <cassert>
 #include <iostream>
-#include <vector>
-
+#include <cstring>
 using namespace std;
 
-int solve(vector<vector<int>> V)
+string strmult(char *s, int n)
 {
-    int n = V.size(), indexOfMin = 0, indexOfMax = 0, min = V[0][0], max = V[0][0], answer = 0;
-
-    for (int i = 0; i < n; ++i)
-    {
-        for (int j = 0; j < n; ++j)
-        {
-            if (max < V[i][j])
-            {
-                max = V[i][j];
-                indexOfMax = i;
-            }
-            if (min > V[j][i])
-            {
-                min = V[j][i];
-                indexOfMin = i;
-            }
-        }
-    }
-
-    for (int i = 0; i < n; ++i)
-    {
-        answer += V[indexOfMax][i] * V[i][indexOfMin];
-    }
-
-    return answer;
+    string snew;
+    int len = strlen(s);
+    for (int j = 0; j < n; j++)
+        for (int i = 0; i < len; i++)
+            snew += s[i];
+    return snew;
 }
 
-// main отвечает за ввод-вывод
 int main()
 {
-    // Dulustan's tests
-    {
-        vector<vector<int>> inp;
-        inp = {{1, 2, 3},
-               {4, 5, 6},
-               {7, 8, 9}};
-        assert(solve(inp) == 102);
-
-        inp = {{1, 2},
-               {3, 4}};
-        assert(solve(inp) == 15);
-
-        inp = {{6, -10, 8, 22},
-               {100, 0, 0, 0},
-               {11, 17, 7, 91},
-               {31, 32, 33, 34}};
-        assert(solve(inp) == -1000);
-    }
-
-    // придумайте по одному тесту 4x4 и 6x6
-    // Student's tests
-    //{
-
-    //}
+    char *s = new char;
+    int n = 0;
+    cin >> s;
+    cin >> n;
+    cout << strmult(s, n);
 }

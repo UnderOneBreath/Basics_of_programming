@@ -1,71 +1,68 @@
 #define NDEBUG
 #include <cassert>
+#include <cctype>
+#include <string>
 #include <iostream>
-#include <vector>
-#include <cstdlib>
-#include <ctime>
 using namespace std;
 
-void InputEl(vector<vector<int>> V, int n)
+int wordcount(char *s)
 {
-    srand(time(0));
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < n; j++)
-            V[i][j] = rand() % 2;
-}
-void OutputArray(vector<vector<int>> V, int n)
-{
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < n; j++)
-            cout << V[i][j];
+    int k = 0;
+    bool wordC = 0;
+    for (int i = 0; i < 100; i++)
+    {
+        if (s[i] == ' ' or s[i] == '\t' or s[i] == '\n')
+        {
+            wordC = false;
+        }
+        else if (!wordC)
+        {
+            wordC = true;
+            k++;
+        }
+    }
+    return k;
 }
 
-// main отвечает за ввод-вывод
 int main()
 {
-    int n, count = 0, maxCount = 0, Gcount;
-    cin >> n;
-    vector<vector<int>> V(n, vector<int>(n));
-    InputEl(V, n);
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            if (V[i][i] == 0)
-                Gcount++;
-            if (V[i][j] == 0)
-                count++;
-        }
-        if (count > maxCount)
-            maxCount == count;
-        else if (Gcount > maxCount)
-            maxCount == Gcount;
-        count == 0;
-        Gcount == 0;
-    }
-    cout << maxCount;
-    cout << endl;
-    OutputArray(V, n);
-
+    char s[100] = "a        gg!";
+    cout << wordcount(s) << endl;
     // Dulustan's tests
     {
-        vector<vector<int>> inp;
-        inp = {{1, -1, 1}, {-1, 1, -1}, {1, -1, 1}};
-        assert(solve(inp) == 0);
+        {
+            char s[100] = "a bcd ef gg!";
+            assert(wordcount(s) == 4);
+        }
 
-        inp = {{5, 0, 0, -1}, {0, 0, 7, 2}, {0, -10, 0, -1}, {3, 0, 13, 0}};
-        assert(solve(inp) == 3);
+        {
+            char s[100] = "captain, oh captain!!";
+            assert(wordcount(s) == 3);
+        }
 
-        inp = {{10, 10, 10}, {10, 0, 10}, {10, 0, 10}};
-        assert(solve(inp) == 2);
+        {
+            char s[100] = "x xx xxx xxxxxxxxx x x x";
+            assert(wordcount(s) == 7);
+        }
 
-        inp = {{1, 0, 0, 2, 0}, {0, 3, 0, 0, 4}, {5, 6, 0, 7, 8}, {9, 0, 10, 11, 12}, {13, 0, 0, 0, 14}};
-        assert(solve(inp) == 4);
+        cout << "SUCCESS!" << endl;
     }
 
-    // придумайте по одному тесту 4x4 и 6x6
+    // Сделайте 3 теста
     // Student's tests
-    //{
-
-    //}
+    {
+        {
+            char s[100] = "Do you want return?";
+            assert(wordcount(s) == 4);
+        }
+        {
+            char s[100] = "You want me";
+            assert(wordcount(s) == 3);
+        }
+        {
+            char s[100] = "SHIIIISH nooo pleaase noooooooo no no nooo";
+            assert(wordcount(s) == 7);
+        }
+        cout << "SUCCESS!" << endl;
+    }
 }

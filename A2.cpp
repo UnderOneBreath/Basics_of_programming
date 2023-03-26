@@ -1,71 +1,72 @@
 // #define NDEBUG
 #include <cassert>
 #include <iostream>
-#include <vector>
 using namespace std;
 
-vector<vector<char>> solve(int n, int m)
+bool is_pal(double *a, int size)
 {
-    vector<vector<char>> Array(n, vector<char>(m));
-    int temp = 0;
-    for (int i = 0; i < n; i++)
+    double *beg = a;
+    double *end = a + size - 1;
+
+    while (beg < end)
     {
-        for (int j = 0; j < m; j++)
-        {
-            temp += 1;
-            if (temp % 2 != 0)
-                Array[i][j] = 'b';
-            else
-                Array[i][j] = 'w';
-        }
-        if (m % 2 == 0)
-            temp += 1;
+        if (*beg != *end)
+            return false;
+        *beg++;
+        *end--;
     }
-    return Array;
+    return true;
 }
 
 int main()
 {
-
     // Dulustan's tests
     {
-        vector<vector<char>> outp;
+        {
+            double a[]{1, 2, 3, 2, 1};
+            assert(is_pal(a, 5));
+        }
 
-        outp = {{'b', 'w'}};
-        assert(solve(1, 2) == outp);
+        {
+            double a[]{1, -2, 3, 4, 999, 4, 3, -2, 1};
+            assert(is_pal(a, 9));
+        }
 
-        outp = {{'b'}, {'w'}, {'b'}, {'w'}, {'b'}};
-        assert(solve(5, 1) == outp);
+        {
+            double a[]{1, 2, 3, 3, 1};
+            assert(!is_pal(a, 5));
+        }
 
-        outp = {{'b', 'w', 'b', 'w'}, {'w', 'b', 'w', 'b'}, {'b', 'w', 'b', 'w'}};
-        assert(solve(3, 4) == outp);
+        {
+            double a[]{-77, 23, 365, 366, 23, -77};
+            assert(!is_pal(a, 6));
+        }
 
-        outp = {{'b', 'w', 'b'}, {'w', 'b', 'w'}, {'b', 'w', 'b'}, {'w', 'b', 'w'}, {'b', 'w', 'b'}, {'w', 'b', 'w'}};
-        assert(solve(6, 3) == outp);
-
-        // доделайте эти тесты
-        // Student's tests
-        outp = {{'b', 'w', 'b'}, {'w', 'b', 'w'}};
-        assert(solve(2, 3) == outp);
-
-        outp = {{'b', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'b'},
-                {'w', 'b', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'b', 'w'},
-                {'b', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'b'},
-                {'w', 'b', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'b', 'w'},
-                {'b', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'b', 'w', 'b'}};
-        assert(solve(5, 11) == outp);
-
-        outp = {{'b', 'w', 'b', 'w'},
-                {'w', 'b', 'w', 'b'},
-                {'b', 'w', 'b', 'w'},
-                {'w', 'b', 'w', 'b'},
-                {'b', 'w', 'b', 'w'},
-                {'w', 'b', 'w', 'b'},
-                {'b', 'w', 'b', 'w'},
-                {'w', 'b', 'w', 'b'},
-                {'b', 'w', 'b', 'w'},
-                {'w', 'b', 'w', 'b'}};
-        assert(solve(10, 4) == outp);
+        cout << "SUCCESS!" << endl;
     }
-    cout << "TEST COMPLITED";
+
+    // Сделайте 2 позитивных и 2 негативных теста
+    // Student's tests
+    {
+        {
+            double a[]{5, 6, 7, 8, 99, 8, 7, 6, 5};
+            assert(is_pal(a, 9));
+        }
+
+        {
+            double a[]{12, 23, 34, 45, 46, 45, 34, 23, 12};
+            assert(is_pal(a, 9));
+        }
+
+        {
+            double a[]{-1, -2, -3, 5, -3, -2, -1};
+            assert(!is_pal(a, 6));
+        }
+
+        {
+            double a[]{-7, 2, 3, 3, 2, -7};
+            assert(!is_pal(a, 6));
+        }
+        cout << "SUCCESS!" << endl;
+    }
 }
