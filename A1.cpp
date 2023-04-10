@@ -1,47 +1,65 @@
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
-class IT_Student {
-    private:
-        string name;
-        string surname;
-        int group_number;
-        int marks[5];
-        string favorite_language;
-        
-    public:
-    IT_Student(string name, string surname, int group_number, int marks[], string favorite_language) {
-        this->name = name;
-        this->surname = surname;
-        this->group_number = group_number;
-        for (int i = 0; i < 5; i++) {
-            this->marks[i] = marks[i];
-        }
-        this->favorite_language = favorite_language;
+class IT_Student
+{
+private:
+    string name;
+    string surname;
+    int group_number;
+    int marks[5];
+    string favorite_language;
+    double GPA;
+
+public:
+    IT_Student()
+    {
+        name = "Kesha";
+        surname = "Chikal'din";
     }
-    
-    void printData() {
+    IT_Student(string _name, string _surname, int _group_number, int _marks[], string _favorite_language, double _GPA)
+    {
+        name = _name;
+        surname = _surname;
+        group_number = _group_number;
+        for (int i = 0; i < 5; i++)
+        {
+            marks[i] = _marks[i];
+        }
+        favorite_language = _favorite_language;
+        GPA = _GPA;
+    }
+
+    void printData()
+    {
+        double marksM;
         cout << "Name: " << name << endl;
         cout << "Surname: " << surname << endl;
         cout << "Group number: " << group_number << endl;
         cout << "Marks: ";
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++)
+        {
             cout << marks[i] << " ";
+            marksM += marks[i];
         }
         cout << endl;
         cout << "Favorite language: " << favorite_language << endl;
+        cout << "GPA: " << marksM / 5 << endl;
     }
-    
 };
 
-int main() {
+int main()
+{
     const int num_students = 3;
-    IT_Student students[num_students] = {};
-
+    vector<IT_Student> students(num_students);
     string name, surname, favorite_language;
     int group_number, marks[5];
-    for (int i = 0; i < num_students; i++) {
+    char next_changeMarks;
+    double GPA;
+    for (int i = 0; i < num_students; i++)
+    {
         cout << "Name: ";
         getline(cin, name);
 
@@ -51,8 +69,9 @@ int main() {
         cout << "Group number: ";
         cin >> group_number;
 
-        cout << "Marks (separated by spaces): ";
-        for (int j = 0; j < 5; j++) {
+        cout << "Marks: ";
+        for (int j = 0; j < 5; j++)
+        {
             cin >> marks[j];
         }
 
@@ -60,14 +79,22 @@ int main() {
         cin.ignore();
         getline(cin, favorite_language);
 
-        students[i] = IT_Student(name, surname, group_number, marks, favorite_language);
+        students[i] = IT_Student(name, surname, group_number, marks, favorite_language, GPA);
     }
 
-    for (int i = 0; i < num_students; i++) {
-        cout << "Data for student #" << i+1 << ":" << endl;
+    for (int i = 0; i < num_students; i++)
+    {
+        cout << "Student #" << i + 1 << ":" << endl;
         students[i].printData();
         cout << endl;
     }
-    
+
+    cout << "Do you want to play game change marks? y/n: ";
+    cin >> next_changeMarks;
+    if (next_changeMarks == 'n')
+        return 0;
+
+    cout << "What's the student number?: ";
+
     return 0;
 }
