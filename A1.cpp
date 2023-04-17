@@ -5,7 +5,6 @@ using namespace std;
 
 class IT_Student
 {
-private:
     string name;
     string surname;
     int group_number;
@@ -16,8 +15,6 @@ private:
 public:
     IT_Student()
     {
-        name = "Kesha";
-        surname = "Chikal'din";
     }
     IT_Student(string _name, string _surname, int _group_number, int _marks[], string _favorite_language, double _GPA)
     {
@@ -52,10 +49,11 @@ public:
 
 int main()
 {
+    IT_Student stud;
     const int num_students = 3;
     vector<IT_Student> students(num_students);
     string name, surname, favorite_language;
-    int group_number, marks[5];
+    int group_number, number, marks[5];
     char next_changeMarks;
     double GPA;
     for (int i = 0; i < num_students; i++)
@@ -89,12 +87,34 @@ int main()
         cout << endl;
     }
 
-    cout << "Do you want to play game change marks? y/n: ";
-    cin >> next_changeMarks;
-    if (next_changeMarks == 'n')
-        return 0;
+    while (true)
+    {
+        while (true)
+        {
+            cout << "Do you want change marks? y/n: ";
+            cin >> next_changeMarks;
+            if (next_changeMarks == 'n')
+                return 0;
+            else if (next_changeMarks == 'y')
+            {
+                break;
+            }
+        }
+        cout << "What's the student number?: ";
+        cin >> number;
+        cout << "Marks: ";
+        for (int j = 0; j < 5; j++)
+        {
+            cin >> marks[j];
+        }
+        students[number - 1] = IT_Student(name, surname, group_number, marks, favorite_language, GPA);
 
-    cout << "What's the student number?: ";
-
+        for (int i = 0; i < num_students; i++)
+        {
+            cout << "Student #" << i + 1 << ":" << endl;
+            students[i].printData();
+            cout << endl;
+        }
+    }
     return 0;
 }
