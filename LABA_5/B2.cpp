@@ -14,12 +14,8 @@ public:
         {
             int minIndex = i;
             for (int j = i + 1; j < n; j++)
-            {
                 if (a[j] < a[minIndex])
-                {
                     minIndex = j;
-                }
-            }
             swap(a[i], a[minIndex]);
         }
     }
@@ -31,13 +27,11 @@ public:
         {
             bool is_sorted = true;
             for (int j = 0; j < n - i - 1; j++)
-            {
                 if (a[j] > a[j + 1])
                 {
                     swap(a[j], a[j + 1]);
                     is_sorted = false;
                 }
-            }
             if (is_sorted)
                 break;
         }
@@ -75,7 +69,7 @@ public:
         while (i2 < n2)
             a.push_back(a2[i2++]);
     }
-    
+
     static void Merge_Sort(vector<int> &a)
     {
         int n = a.size();
@@ -132,13 +126,11 @@ int main()
     auto elapsed = chrono::duration_cast<chrono::milliseconds>(end - start);
     cout << "Selection Sort: " << elapsed.count() << " microsec" << endl;
 
-
     start = chrono::high_resolution_clock::now();
     SortingChampion::Bubble_Sort(temp);
     end = chrono::high_resolution_clock::now();
     elapsed = chrono::duration_cast<chrono::milliseconds>(end - start);
     cout << "Bubble Sort: " << elapsed.count() << " microsec" << endl;
-
 
     start = chrono::high_resolution_clock::now();
     SortingChampion::Insertion_Sort(temp);
@@ -151,7 +143,6 @@ int main()
     end = chrono::high_resolution_clock::now();
     elapsed = chrono::duration_cast<chrono::milliseconds>(end - start);
     cout << "Merge Sort: " << elapsed.count() << " microsec" << endl;
-
 
     start = chrono::high_resolution_clock::now();
     SortingChampion::Quick_Sort(temp, 0, temp.size() - 1);
