@@ -2,6 +2,8 @@
 #include <vector>
 #include <chrono>
 #include <fstream>
+#include <ctime>
+
 using namespace std;
 
 class SortingChampion
@@ -108,45 +110,57 @@ public:
 };
 int main()
 {
-    ifstream file("RandomNumbers[10000].txt");
+    ifstream Ifile("RandomNumbers[10000].txt");
+    ofstream Ofile("RandomNumbers[10000].txt");
 
     vector<int> a;
+    vector<int> r;
     int nums;
+    int randomNum, min = 0, max = 1024;
+    srand(time(0));
+    for (int i = 0; i < 10000; i++)
+    {
+        randomNum = (rand() % (max - min + 1)) + min;
+        r.push_back(randomNum);
+    }
+    for (int i = 0; i < r.size(); i++)
+        Ofile << r[i] << endl;
 
-    while (file >> nums)
+    while (Ifile >> nums)
         a.push_back(nums);
 
-    file.close();
+    Ifile.close();
+    Ofile.close();
     cout << a.size() << endl;
 
     vector<int> temp = a;
     auto start = chrono::high_resolution_clock::now();
     SortingChampion::Selection_Sort(temp);
     auto end = chrono::high_resolution_clock::now();
-    auto elapsed = chrono::duration_cast<chrono::milliseconds>(end - start);
-    cout << "Selection Sort: " << elapsed.count() << " microsec" << endl;
+    auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - start);
+    cout << "Selection Sort: " << elapsed.count() << " nanoseconds" << endl;
 
     start = chrono::high_resolution_clock::now();
     SortingChampion::Bubble_Sort(temp);
     end = chrono::high_resolution_clock::now();
-    elapsed = chrono::duration_cast<chrono::milliseconds>(end - start);
-    cout << "Bubble Sort: " << elapsed.count() << " microsec" << endl;
+    elapsed = chrono::duration_cast<chrono::nanoseconds>(end - start);
+    cout << "Bubble Sort: " << elapsed.count() << " nanoseconds" << endl;
 
     start = chrono::high_resolution_clock::now();
     SortingChampion::Insertion_Sort(temp);
     end = chrono::high_resolution_clock::now();
-    elapsed = chrono::duration_cast<chrono::milliseconds>(end - start);
-    cout << "Insertion Sort: " << elapsed.count() << " microsec" << endl;
+    elapsed = chrono::duration_cast<chrono::nanoseconds>(end - start);
+    cout << "Insertion Sort: " << elapsed.count() << " nanoseconds" << endl;
 
     start = chrono::high_resolution_clock::now();
     SortingChampion::Merge_Sort(temp);
     end = chrono::high_resolution_clock::now();
-    elapsed = chrono::duration_cast<chrono::milliseconds>(end - start);
-    cout << "Merge Sort: " << elapsed.count() << " microsec" << endl;
+    elapsed = chrono::duration_cast<chrono::nanoseconds>(end - start);
+    cout << "Merge Sort: " << elapsed.count() << " nanoseconds" << endl;
 
     start = chrono::high_resolution_clock::now();
     SortingChampion::Quick_Sort(temp, 0, temp.size() - 1);
     end = chrono::high_resolution_clock::now();
-    elapsed = chrono::duration_cast<chrono::milliseconds>(end - start);
-    cout << "Quick Sort: " << elapsed.count() << " microsec" << endl;
+    elapsed = chrono::duration_cast<chrono::nanoseconds>(end - start);
+    cout << "Quick Sort: " << elapsed.count() << " nanoseconds" << endl;
 }

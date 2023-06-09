@@ -7,22 +7,22 @@ int main()
 {
     int n;
     cin >> n;
-    vector<int> v(n);
+    vector<int> a(n);
 
-    for (int i = 0; i < n; i++)
-        cin >> v[i];
-    cout << "Bubble Sort:" << endl;
+    for (int i = 0; i < a.size(); i++)
+        cin >> a[i];
+    cout << "Bubble Sort: " << endl;
     int k = 0;
-    for (int t = n - 1; t >= 1; t--)
+    for (int t = a.size() - 1; t >= 1; t--)
     {
         bool sorted = true;
-        for (int i = n - 1; i > 0; i--)
-            if (v[i - 1] > v[i])
+        for (int i = a.size() - 1; i > 0; i--)
+            if (a[i - 1] > a[i])
             {
-                swap(v[i - 1], v[i]);
+                swap(a[i - 1], a[i]);
                 sorted = false;
-                for (int j = 0; j < n; j++)
-                    cout << v[j] << " ";
+                for (int j = 0; j < a.size(); j++)
+                    cout << a[j] << " ";
                 k++;
                 cout << endl;
             }
