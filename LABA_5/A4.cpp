@@ -26,5 +26,5 @@ int main(){
         }
         cout<<endl;
     }
-    cout<<k;
+    cout<< "all: " << k;
 }

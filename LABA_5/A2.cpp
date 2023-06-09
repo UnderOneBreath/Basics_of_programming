@@ -29,5 +29,5 @@ int main(){
         break;
     }
     }
-    cout<<k;
+    cout<< "all: "<<k;
 }

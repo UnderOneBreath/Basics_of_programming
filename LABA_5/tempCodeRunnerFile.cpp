@@ -1,1 +1,1 @@
-    cout << a.size() << endl;
+    start = chrono::high_resolution_clock::now();
