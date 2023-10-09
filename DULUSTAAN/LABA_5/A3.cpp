@@ -7,6 +7,7 @@ int main()
 {
     int n;
     cin >> n;
+    int kn;
     vector<int> v(n);
     for (int i = 0; i < n; i++)
         cin >> v[i];
@@ -28,7 +29,9 @@ int main()
             {
                 cout << v[t] << " ";
             }
+            kn++;
             cout << endl;
         }
     }
+    cout << "all: " << kn << endl;
 }
