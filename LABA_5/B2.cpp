@@ -120,7 +120,7 @@ int main()
     srand(time(0));
     for (int i = 0; i < 10000; i++)
     {
-        randomNum = (rand() % (max - min + 1)) + min;
+        randomNum = (rand() % (max - min + 1)) + min;a
         r.push_back(randomNum);
     }
     for (int i = 0; i < r.size(); i++)
