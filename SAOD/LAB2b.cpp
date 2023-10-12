@@ -1,75 +1,51 @@
 #include <iostream>
-#include <stack>
-#include <string>
-#include <sstream>
-
 using namespace std;
 
-double evaluateRPN(const string &rpnExpression)
+struct Node
 {
-    stack<double> operands;
+    int d;
+    Node *next;
+};
+Node *top = NULL;
 
-    istringstream iss(rpnExpression);
-    string token;
-
-    while (iss >> token)
-    {
-        if (isdigit(token[0]) || (token[0] == '-' && token.length() > 1))
-        {
-            double number = stod(token);
-            operands.push(number);
-        }
-        else
-        {
-            double operand2 = operands.top();
-            operands.pop();
-            double operand1 = operands.top();
-            operands.pop();
-
-            if (token == "+")
-            {
-                operands.push(operand1 + operand2);
-            }
-            else if (token == "-")
-            {
-                operands.push(operand1 - operand2);
-            }
-            else if (token == "*")
-            {
-                operands.push(operand1 * operand2);
-            }
-            else if (token == "/")
-            {
-                operands.push(operand1 / operand2);
-            }
-            else
-            {
-                cerr << "Недопустимый оператор: " << token << endl;
-                return 0;
-            }
-        }
-    }
-
-    if (!operands.empty())
-    {
-        return operands.top();
-    }
+void push(Node **top, int d)
+{
+    Node *pv;
+    pv = new Node;
+    pv->d = d;
+    if (!top)
+        pv->next = NULL;
     else
+        pv->next = *top;
+    *top = pv;
+}
+
+void init()
+{
+    int d;
+    while (!feof(stdin))
     {
-        cerr << "Ошибка: стек пуст" << endl;
-        return 0.0;
+        cin >> d;
+        push(&top, d);
+    }
+}
+
+void print(Node *top)
+{
+    Node *temp;
+    temp = top;
+    while (temp)
+    {
+        cout << temp->d << ' ' << '\n';
+        temp = temp->next;
     }
 }
 
 int main()
 {
-    setlocale(LC_CTYPE, "rus");
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
-
-    double result = evaluateRPN();
-
-    cout << "Результат: " << result << endl;
-
-    return 0;
+    top = 0;
+    init();
+    print(top);
 }
