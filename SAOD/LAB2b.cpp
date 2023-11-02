@@ -1,51 +1,48 @@
 #include <iostream>
+#include <string>
+#include <vector>
 using namespace std;
-
 struct Node
 {
-    int d;
+    char c;
     Node *next;
 };
-Node *top = NULL;
+Node *top = 0;
+// void push(Node **top, char c)
+// {
+//     Node *pv;
+//     pv = new Node;
+//     pv->c = c;
+//     if (!top)
+//         pv->next = NULL;
+//     else
+//         pv->next = *top;
+//     *top = pv;
+// }
 
-void push(Node **top, int d)
+char pop(Node **top)
 {
-    Node *pv;
-    pv = new Node;
-    pv->d = d;
-    if (!top)
-        pv->next = NULL;
-    else
-        pv->next = *top;
-    *top = pv;
+    char temp = (*top)->c;
+    Node *pv = *top;
+    (*top) = (*top)->next;
+    delete pv;
+    return temp;
 }
 
+vector<int> *arr;
 void init()
 {
     int d;
     while (!feof(stdin))
     {
         cin >> d;
-        push(&top, d);
+        arr->push_back(d);
     }
 }
-
-void print(Node *top)
-{
-    Node *temp;
-    temp = top;
-    while (temp)
-    {
-        cout << temp->d << ' ' << '\n';
-        temp = temp->next;
-    }
-}
-
 int main()
 {
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
-    top = 0;
     init();
-    print(top);
+    pop(&top);
 }
