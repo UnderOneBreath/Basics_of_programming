@@ -1,75 +1,91 @@
 #include <iostream>
+#include <fstream>
 #include <stack>
 #include <string>
 #include <sstream>
-
 using namespace std;
 
-double evaluateRPN(const string &rpnExpression)
-{
-    stack<double> operands;
+struct Node {
+    int d;
+    Node *next;
+};
 
-    istringstream iss(rpnExpression);
-    string token;
+Node *top = NULL;
 
-    while (iss >> token)
-    {
-        if (isdigit(token[0]) || (token[0] == '-' && token.length() > 1))
-        {
-            double number = stod(token);
-            operands.push(number);
-        }
-        else
-        {
-            double operand2 = operands.top();
-            operands.pop();
-            double operand1 = operands.top();
-            operands.pop();
-
-            if (token == "+")
-            {
-                operands.push(operand1 + operand2);
-            }
-            else if (token == "-")
-            {
-                operands.push(operand1 - operand2);
-            }
-            else if (token == "*")
-            {
-                operands.push(operand1 * operand2);
-            }
-            else if (token == "/")
-            {
-                operands.push(operand1 / operand2);
-            }
-            else
-            {
-                cerr << "Недопустимый оператор: " << token << endl;
-                return 0;
-            }
-        }
-    }
-
-    if (!operands.empty())
-    {
-        return operands.top();
-    }
+void push(Node **top, int d) {
+    Node *pv;
+    pv = new Node;
+    pv->d = d;
+    if (!*top)
+        pv->next = NULL;
     else
-    {
-        cerr << "Ошибка: стек пуст" << endl;
-        return 0.0;
-    }
+        pv->next = *top;
+    *top = pv;
 }
 
-int main()
-{
-    setlocale(LC_CTYPE, "rus");
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+int pop(Node **top) {
+    int temp = (*top)->d;
+    Node *pv = *top;
+    (*top) = (*top)->next;
+    delete pv;
+    return temp;
+}
 
-    double result = evaluateRPN();
+bool isOperator(const string &s) {
+    return (s == "+" || s == "-" || s == "*" || s == "/");
+}
 
-    cout << "Результат: " << result << endl;
+int performOperation(const string &op, int a, int b) {
+    if (op == "+")
+        return a + b;
+    else if (op == "-")
+        return a - b;
+    else if (op == "*")
+        return a * b;
+    else if (op == "/")
+        return a / b;
+    else
+        return 0; // Error case
+}
+
+void evaluateRPN(const string &input, ofstream &outputFile) {
+    stack<int> st;
+    stringstream ss(input);
+    string token;
+
+    while (ss >> token) {
+        if (!isOperator(token)) {
+            int operand;
+            stringstream(token) >> operand;
+            st.push(operand);
+        } else {
+            int operand2 = st.top();
+            st.pop();
+            int operand1 = st.top();
+            st.pop();
+            int result = performOperation(token, operand1, operand2);
+            st.push(result);
+        }
+    }
+    outputFile << "Result: " << st.top() << endl;
+}
+
+int main() {
+    ifstream inputFile("input.txt");
+    ofstream outputFile("output.txt");
+
+    if (!inputFile.is_open() || !outputFile.is_open()) {
+        cout << "Unable to open file.";
+        return 1;
+    }
+
+    string input;
+    getline(inputFile, input);
+
+    evaluateRPN(input, outputFile);
+
+    inputFile.close();
+    outputFile.close();
 
     return 0;
 }

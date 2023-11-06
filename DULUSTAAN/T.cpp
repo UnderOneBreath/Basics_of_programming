@@ -1,4 +1,5 @@
 #include <iostream>
+<<<<<<< HEAD
 #include <fstream>
 #include <string>
 #include <cctype>
@@ -36,3 +37,20 @@ int main() {
 
     return 0;
 }
+=======
+#include <vector>
+using namespace std;
+
+double get(char n)
+{
+    cout << int(n) << endl;
+    return int(n);
+}
+
+int main()
+{
+    char a;
+    cout << int(a) << endl;
+    get(a);
+}
+>>>>>>> 98225032bdf88f0cc01206fbca97354644ff8557
