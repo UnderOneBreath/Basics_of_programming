@@ -31,7 +31,7 @@ void RecTriangle(int n)
 
 int main()
 {
-	int n = 4;
+	int n = 6;
 	int count = 0;
 	RegTriangle(n, count);
 	RecTriangle(n);
