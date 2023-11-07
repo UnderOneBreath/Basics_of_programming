@@ -44,8 +44,7 @@ int performOperation(const string &op, int a, int b) {
         return a * b;
     else if (op == "/")
         return a / b;
-    else
-        return 0; // Error case
+    return 0;
 }
 
 void evaluateRPN(const string &input, ofstream &outputFile) {
@@ -73,11 +72,6 @@ void evaluateRPN(const string &input, ofstream &outputFile) {
 int main() {
     ifstream inputFile("input.txt");
     ofstream outputFile("output.txt");
-
-    if (!inputFile.is_open() || !outputFile.is_open()) {
-        cout << "Unable to open file.";
-        return 1;
-    }
 
     string input;
     getline(inputFile, input);

@@ -9,26 +9,35 @@ int main() {
     ifstream input("input.txt");
     ofstream output("output.txt");
 
-    int N, M;
+    int N, M, t;
     input >> N >> M;
-    vector<int> thirst(N);
+    // vector<int> thirst(N);
     multiset<int> ms;
 
-    for (int i = 0; i < N; i++) {
-        input >> thirst[i];
-        ms.insert(thirst[i]);
-    }
-
-    int total_thirst = 0;
+    // int total_thirst = 0;
     
-    while (M > 0 && !ms.empty()) {
-        int max_thirst = *(--ms.end());
+    // while (M > 0 && !ms.empty()) {
 
-        ms.erase(--ms.end());
-        int next_thirst = max_thirst / 10;
-        total_thirst +=
+	for (int i = 0; i < N; i++) {
+		input >> t;
+		ms.insert(t);
+	}
 
+	while (M != 0) {
+		multiset <int> :: reverse_iterator rit = ms.rbegin();
+		ms.insert((*rit) / 10);
+		ms.erase(--ms.end());
+		M--;
+	}
 
-    }
+	int p = 0;
+	multiset <int> :: iterator it = ms.begin();
+	for (int i = 1; it != ms.end(); i++, it++)
+		p = p + (*(it));
+
+	output << p;
+
+	input.close();
+	output.close();
 
 }
