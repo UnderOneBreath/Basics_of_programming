@@ -4,16 +4,16 @@ class STUDENT:
         self.group_number = group_number
         self.grades = grades
 
-    def display_info(self):
+    def displayInfo(self):
         print(f"Student: {self.name}")
         print(f"Group: {self.group_number}")
         print(f"Academic performance: {', '.join(map(str, self.grades))}")
 
-    def calculate_average_grade(self):
+    def calculateAverageGrade(self):
         return sum(self.grades) / len(self.grades)
 
 
-def read_students_data(n):
+def readStudentsData(n):
     students = []
     for _ in range(n):
         name = input("Enter full name and student's initials: ")
@@ -24,23 +24,23 @@ def read_students_data(n):
     return students
 
 
-def display_students_sorted_by_group(students):
+def displayStudentsSortedByGroup(students):
     sorted_students = sorted(students, key=lambda x: x.group_number)
     for student in sorted_students:
-        student.display_info()
+        student.displayInfo()
         print()
 
 
-def display_students_above_average(students):
+def displayStudentsAboveAverage(students):
     for student in students:
-        average_grade = student.calculate_average_grade()
+        average_grade = student.calculateAverageGrade()
         if average_grade > 4.0:
             print(f"Студент: {student.name}, Группа: {student.group_number}")
 
 
 def main():
     n = int(input("Введите количество студентов: "))
-    students = read_students_data(n)
+    students = readStudentsData(n)
 
     while True:
         print("\nМеню:")
@@ -50,9 +50,9 @@ def main():
 
         choice = input("Выберите действие (1/2/3): ")
         if choice == '1':
-            display_students_sorted_by_group(students)
+            displayStudentsSortedByGroup(students)
         elif choice == '2':
-            display_students_above_average(students)
+            displayStudentsAboveAverage(students)
         elif choice == '3':
             break
         else:
