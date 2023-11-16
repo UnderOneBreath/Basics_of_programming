@@ -1,10 +1,6 @@
 #include <iostream>
 using namespace std;
 
-
-// realization stack
-
-
 int main()
 {
     int a, n;
@@ -12,8 +8,9 @@ int main()
     cin >> n;
     int *sl = new int[n];
 
-    for (int i = 0; i < n; i++) sl[i] = i;
+    for (int i = 0; i < n; i++)
+        sl[i] = i;
 
-    for (int i = 0; i < n; i++) cout << sl[i] << " ";
-
+    for (int i = 0; i < n; i++)
+        cout << sl[i] << " ";
 }

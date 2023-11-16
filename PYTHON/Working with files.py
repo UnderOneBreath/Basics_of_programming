@@ -7,8 +7,13 @@ with open("listCompany.txt", 'w', encoding='utf-8') as ListComponyW:
         arrClass = [nameOrganise, addres, numberPhone]
         for i in arrClass:
             ListComponyW.write(f"{i}\n")
-        print("Accept? (y/n)")
-        flag = input()
+        while True:
+            print("Accept? (y/n)")
+            flag = input()
+            if flag == 'y' or flag == 'n':
+                break
+            else:
+                print("try again")
 
 ListComponyR = open("listCompany.txt", 'r', encoding='utf-8')
 countWordsW = open("resultCount.txt", 'w')

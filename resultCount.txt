@@ -1,2 +1,2 @@
-Total words: 9
-Unique words: 9
+Total words: 3
+Unique words: 3
