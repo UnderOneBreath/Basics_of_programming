@@ -1,0 +1,3 @@
+Number of capital letters: 5
+Word count: 9
+Unique count words: 9
