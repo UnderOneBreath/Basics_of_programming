@@ -12,10 +12,26 @@ class TRAIN:
         print(f"Arrival time: {self.arrival_time}")
     
 
-firtTime = str(input())
-lastTime = str(input())
+firstTime = str("00:00")
+lastTime = str("00:00")
 
 timeInNum1 = firstTime.split(':')
 timeInNum2 = lastTime.split(':')
 
-for 
+if timeInNum1[0][1] == '0':
+    print(timeInNum1[0][0])
+
+# print(timeInNum1, timeInNum2)
+
+# def calculateTime():
+#     if int(timeInNum1[0]) > int(timeInNum2[0]):
+#         f = 24 - int(timeInNum1[0])
+#         time = f + int(timeInNum2[0])
+#     print(time)
+
+
+# k = int(timeInNum2[0]) - int(timeInNum1[0])
+# print(k)
+# calculateTime()
+# for i in range(1, 25):
+#     print(i)
