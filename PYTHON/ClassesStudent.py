@@ -38,22 +38,28 @@ def displayStudentsAboveAverage(students):
             print(f"Студент: {student.name}, Группа: {student.group_number}")
 
 
-def main():
-    n = int(input("Введите количество студентов: "))
-    students = readStudentsData(n)
+while True:
+    n = input("Введите количество студентов: ")
+    if n.isdigit() == False or (n[0] == '0' and len(n) > 1):
+        print("Error, только целые положительные числа")
+    else:
+        n = int(n)
+        break
 
-    while True:
-        print("\nМеню:")
-        print("1. Вывести студентов, отсортированных по номеру группы")
-        print("2. Вывести студентов с оценкой выше 4.0")
-        print("3. Выход")
+students = readStudentsData(n)
 
-        choice = input("Выберите действие (1/2/3): ")
-        if choice == '1':
-            displayStudentsSortedByGroup(students)
-        elif choice == '2':
-            displayStudentsAboveAverage(students)
-        elif choice == '3':
-            break
-        else:
-            print("Некорректный ввод. Повторите попытку.")
+while True:
+    print("\nМеню:")
+    print("1. Вывести студентов, отсортированных по номеру группы")
+    print("2. Вывести студентов с оценкой выше 4.0")
+    print("3. Выход")
+
+    choice = input("Выберите действие (1/2/3): ")
+    if choice == '1':
+        displayStudentsSortedByGroup(students)
+    elif choice == '2':
+        displayStudentsAboveAverage(students)
+    elif choice == '3':
+        break
+    else:
+        print("Некорректный ввод. Повторите попытку.")
