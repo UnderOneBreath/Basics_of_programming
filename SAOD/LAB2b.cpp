@@ -3,7 +3,12 @@
 #include <stack>
 #include <string>
 #include <sstream>
+
 using namespace std;
+
+string input = "input.txt", output = "output.txt";
+ifstream inp(input);
+ofstream out(output);
 
 struct Node {
     int d;
@@ -31,55 +36,48 @@ int pop(Node **top) {
     return temp;
 }
 
-bool isOperator(const string &s) {
+bool Operator(const string &s) {
     return (s == "+" || s == "-" || s == "*" || s == "/");
 }
 
 int performOperation(const string &op, int a, int b) {
-    if (op == "+")
-        return a + b;
-    else if (op == "-")
-        return a - b;
-    else if (op == "*")
-        return a * b;
-    else if (op == "/")
-        return a / b;
-    return 0;
+    if (op == "+") return a + b;
+    else if (op == "-") return a - b;
+    else if (op == "*") return a * b;
+    else if (op == "/") return a / b;
+    else return 0;
 }
 
-void evaluateRPN(const string &input, ofstream &outputFile) {
+void evaluate(const string &inp, ofstream &out) {
     stack<int> st;
-    stringstream ss(input);
-    string token;
+    stringstream ss(inp);
+    string symbol;
 
-    while (ss >> token) {
-        if (!isOperator(token)) {
+    while (ss >> symbol) {
+        if (!Operator(symbol)) {
             int operand;
-            stringstream(token) >> operand;
+            stringstream(symbol) >> operand;
             st.push(operand);
         } else {
             int operand2 = st.top();
             st.pop();
             int operand1 = st.top();
             st.pop();
-            int result = performOperation(token, operand1, operand2);
+            int result = performOperation(symbol, operand1, operand2);
             st.push(result);
         }
     }
-    outputFile << "Result: " << st.top() << endl;
+    out << st.top() << endl;
 }
 
 int main() {
-    ifstream inputFile("input.txt");
-    ofstream outputFile("output.txt");
-
     string input;
-    getline(inputFile, input);
+    getline(inp, input);
 
-    evaluateRPN(input, outputFile);
+    evaluate(input, out);
 
-    inputFile.close();
-    outputFile.close();
+    inp.close();
+    out.close();
 
     return 0;
 }
