@@ -1,52 +1,59 @@
-#include <iostream>
-#include <string.h>
 #include <fstream>
+#include <iostream>
+#include <algorithm>
+#include <string.h>
+
 using namespace std;
 
-string input = "input.txt", output = "output.txt";
+char *M = new char[8];
 
-void res(int *arr)
+ofstream out;
+
+void fact(int s, int n)
 {
-    for (int i = 0; i < sizeof(arr); i++)
+    if (n == 0)
     {
-        cout << arr[i] << ' ';
+        out << s << endl;
+        return;
     }
-    cout << endl;
+    else
+    {
+        s *= n;
+        fact(s, n - 1);
+    }
 }
 
-void copyArr(int *arr, int *arr2)
+void per(int pos = 0)
 {
-    cout << "void copyArr" << endl;
-    int sizeArr1 = sizeof(arr);
-    int sizeArr2 = sizeof(arr2);
-    cout << sizeArr1 << ' ' << sizeArr2 << endl;
-}
-
-int fact(int lenght)
-{
+    if (pos >= strlen(M))
+    {
+        out << M << endl;
+        return;
+    }
+    else
+    {
+        for (int i = pos; i < strlen(M); ++i)
+        {
+            swap(M[i], M[pos]);
+            per(pos + 1);
+            swap(M[i], M[pos]);
+        }
+    }
 }
 
 int main()
 {
-    const char line = "ABC";
     int len;
 
-    len = strlen(line);
+    ifstream in("input.txt");
+    out.open("output.txt");
 
-    // int arr[]{1, 5, 10, 50, 100, 500};
-    // res(arr);
-    // int n = 5;
-    // int *arr2 = new int[n];
-    // cout << "Size Array dinamic: " << sizeof(arr) << endl;
-    // cout << "Size Array dinamic with using *arr: " << sizeof(arr2) << endl;
+    in >> M;
+    len = strlen(M);
 
-    // copyArr(arr, arr2);
+    fact(len, len - 1);
+    per();
 
-    // int c;
-    // for (auto i : arr)
-    // {
-    //     cout << i << " ";
-    //     c++;
-    // }
-    // cout << "\nThe lenght of the given Array is: " << c;
+    in.close();
+    out.close();
 }
