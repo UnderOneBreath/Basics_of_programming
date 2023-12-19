@@ -1,2 +1,1 @@
-    fstream inp(input);
-    ofstream out(output);
+    string input = "input.txt", output = "output.txt";
