@@ -5,37 +5,33 @@
 #include <string>
 
 using namespace std;
-string input = "LAB5d/input.txt", output = "LAB5d/output.txt";
+
+string input("LAB5d/input.txt"), output("LAB5d/output.txt");
 
 int main() {
     fstream inp(input);
     ofstream out(output);
+    int n;
+    inp >> n;
 
-    string N;
-    getline(inp, N);
-    
-
-
-    vector<int> A(N), B(N), C(N);
-
-    for (int i = 0; i < N; ++i) {
-        cin >> A[i] >> B[i] >> C[i];
+    vector<int> a(n), b(n), c(n);
+    for (int i = 0; i < n; i++) {
+        inp >> a[i] >> b[i] >> c[i];
     }
 
-    vector<int> dp(N, INT_MAX);
-    dp[0] = A[0];
+    vector<int> d(n + 1, 0);
+    d[1] = a[0];
 
-    for (int i = 1; i < N; ++i) {
-        dp[i] = dp[i - 1] + A[i]; // один человек покупает билет
-        if (i > 0) {
-            dp[i] = min(dp[i], dp[i - 2] + B[i]); // два человека покупают билеты
-        }
-        if (i > 1) {
-            dp[i] = min(dp[i], dp[i - 3] + C[i]); // три человека покупают билеты
-        }
-    }
+    if (n > 1)
+        d[2] = min(a[0] + a[1], b[0]);
+    if (n > 2)
+        d[3] = min({d[2] + a[2], d[1] + b[1], c[0]});
+    for (int i = 4; i <= n; i++)
+        d[i] = min({d[i - 1] + a[i - 1], d[i - 2] + b[i - 2], d[i - 3] + c[i - 3]});
 
-    cout << dp[N - 1] << endl;
+    out << d[n] << endl;
 
+    inp.close();
+    inp.close();
     return 0;
 }

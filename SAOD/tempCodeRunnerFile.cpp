@@ -1,1 +1,2 @@
-    string input = "input.txt", output = "output.txt";
+put);
+    int n;
