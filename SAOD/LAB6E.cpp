@@ -33,29 +33,11 @@ void Check_Intersections(double x1, double y1, double x2, double y2,
         out << 0;
         exit(0);
 }
-void Check_Parallelism(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) {
-    //Ax+By+C=0
-    double A1, B1, A2, B2, C1, C2;
-    //first line
-    A1 = y2 - y1;
-    B1 = x1 - x2;
-    C1 = (x1 - x2) * y1 - (y2 - y1) * x1;
-    //second line
-    A2 = y4 - y3;
-    B2 = x3 - x4;
-    C2 = (x3 - x4) * y1 - (y4 - y3) * x1;
-    
 
-    if ((A1 / A2) == (B1 / B2)) {
 
-        if (distance(x1, y1, x4, y4) > distance(x1, y1, x3, y3))
-            out << distance(x1, y1, x3, y3);
-        else out << distance(x1, y1, x4, y4);
-        exit(0);
-    }
-    Check_Intersections(x1, y1, x2, y2, x3, y3, x4, y4, B1, B2, A1, A2, C1, C2);
+double point_to_distance(double x, double y, double A, double B, double C) {
+    return abs(A*x + B*y + C)/sqrt(A*A + B*B);
 }
-
 
 
 int main() {
@@ -66,7 +48,24 @@ int main() {
     inp >> x1 >> y1 >> x2 >> y2;
     inp >> x3 >> y3 >> x4 >> y4;
 
-    Check_Parallelism(x1, y1, x2, y2, x3, y3, x4, y4);
+    //CHECK PARALLELISM
+    double A1, B1, A2, B2, C1, C2;
+    //first line
+    A1 = y2 - y1;
+    B1 = x1 - x2;
+    C1 = (-1)*(x1 - x2) * y1 - (y2 - y1) * x1;
+    //second line
+    A2 = y4 - y3;
+    B2 = x3 - x4;
+    C2 = (-1)*(x3 - x4) * y1 - (y4 - y3) * x1;
+
+    if ((A1 / A2) == (B1 / B2)) {
+        if (distance(x1, y1, x4, y4) > distance(x1, y1, x3, y3))
+            out << distance(x1, y1, x3, y3);
+        else out << distance(x1, y1, x4, y4);
+        exit(0);
+    }
+    Check_Intersections(x1, y1, x2, y2, x3, y3, x4, y4, B1, B2, A1, A2, C1, C2);
 
     double distances [] = {
         distance(x1, y1, x3, y3),
@@ -81,8 +80,8 @@ int main() {
         if (distances[i] < minDist)
             minDist = distances[i];
 
-    
-    
+    out << point_to_distance(x1, y1, A2, B2, C2);
+    out << point_to_distance(x2, y2, A2, B2, C2);
 
     out << minDist;
     
