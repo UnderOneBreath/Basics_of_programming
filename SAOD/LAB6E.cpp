@@ -32,9 +32,9 @@ void Check_Parallelism(double x1, double y1, double x2, double y2, double x3, do
     }
 }
 
-void Check_Intersections(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) {
-    if (x1)
-}
+// void Check_Intersections(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) {
+//     if (x1)
+// }
 
 // double DistFromPointToLine(double px, double py, double x1, double y1, double x2, double y2) {
     
