@@ -1,81 +1,58 @@
 #include <iostream>
-#include <string.h>
-#include <fstream>
-#include <algorithm>
 #include <vector>
-
+#include <algorithm>
+#include <fstream>
 
 using namespace std;
 
-fstream inp("input.txt");
+ifstream inp("input.txt");
 ofstream out("output.txt");
 
-vector<int> queue;
-vector<int> way;
-vector<int> visit;
-vector<vector<int>> a;
+// int a[1000][1000], way[1000], visit[1000], queue[1000];
+const int maxn = 100000;
+bool visit[maxn + 1];
 
-int n, m, k;
-int ans = 0;
-int b;
+vector<int> a[maxn + 1];
 
-void Print(int v)
-{
-    if (v > 0)
-    {
-        Print(way[v]);
-        b += 1;
-    }
-}
-void bfs(int st)
-{
-    int i = 1, j, k = 1, u;
-    queue[k] = st;
-    visit[st] = 1;
-    do
-    {
-        u = queue[i];
-        for (j = 1; j <= n; j++)
-            if (a[u][j] > 0 && visit[j] == 0)
-            {
-                visit[j] = 1;
-                way[j] = u;
-                queue[++k] = j;
-            }
-        i++;
-    } while (i <= k);
-}
+pair<int, int> dfs(int v) {
+    visit[v] = true;
+    pair<int, int> res = { v, 0 };
 
-
-void Init()
-{
-    int i, j, k;
-    inp >> n >> m;
-    memset(way, 0, sizeof(way));
-    memset(a, 0, sizeof(a));
-    for (k = 1; k <= m; k++)
-    {
-        inp >> i >> j;
-        a[i][j] = 1;
-        a[j][i] = 1;
-    }
-}
-
-
-int main()
-{
-    Init();
-    vector<int> countAns;
-    for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= n; j++) {
-            bfs(i);
-            Print(j);
-            countAns.push_back(b);
-            b = 0;
+    for (int i = 0; i < a[v].size(); ++i) {
+        int u = a[v][i];
+        if (!visit[u]) {
+            pair<int, int> tmp = dfs(u);
+            if (tmp.second + 1 > res.second)
+                res = { tmp.first, tmp.second + 1 };
         }
-        memset(way, 0, sizeof(way));
-        memset(queue, 0, sizeof(queue));
-        memset(visit, 0, sizeof(visit));
     }
-    out << *max_element(countAns.begin(), countAns.end()) - 1;
+    return res;
+    // if (!visit[j])
+    // {
+    //     visit[j] = 1;
+    //     way[j] = u;
+    //     queue.push_back(j);
+    // }
+}
+
+int main() {
+
+    int n, m;
+    inp >> n >> m;
+
+    for (int k = 0; k < m; k++) {
+        int i, j;
+        inp >> i >> j;
+        a[i].push_back(j);
+        a[j].push_back(i);
+    }
+
+    fill(visit, visit + n + 1, false);
+    pair<int, int> start = dfs(1);
+
+    fill(visit, visit + n + 1, false);
+    pair<int, int> end = dfs(start.first);
+
+    out << end.second;
+
 }

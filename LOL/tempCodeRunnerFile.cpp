@@ -1,1 +1,7 @@
-    // out << A1 << ' ' << B1 << ' ' << C1 << ' ' << A2 << ' ' << B2 << ' ' << C2 << endl;
+            // for (int k = (bin / n) + 1; k < n; k++) {
+            //     res += b[k];
+            // }
+            
+            // for (int k = bin + 1; k / n == bin / n; k++) {
+            //     res += a[k];
+            // }
